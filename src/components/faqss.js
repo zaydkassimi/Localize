@@ -1,224 +1,122 @@
-import * as React from 'react';
-
+import React, { useState } from 'react';
 import '../index.css';
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-// import Link from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
-
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function FAQ() {
-  const [expanded, setExpanded] = React.useState(false);
+  const [openAccordion, setOpenAccordion] = useState(null);
 
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
+  const toggleAccordion = (index) => {
+    setOpenAccordion(openAccordion === index ? null : index);
   };
 
+  const faqs = [
+    {
+      question: "How does it work?",
+      answer: "Website localization involves adapting a website's content, design, and functionality to make it culturally and linguistically appropriate for a specific target audience in different regions or countries. This typically includes translating text, adjusting images, formats, and ensuring compliance with local regulations and preferences."
+    },
+    {
+      question: "What documents do you need?",
+      answer: "To start our proceedings, a simple list of your debtors is sufficient. Subsequently, if we deem it necessary or upon your debtor's claim, we will ask you for photocopies of supporting documents (contract, invoice, purchase order, delivery note, etc.)."
+    },
+    {
+      question: "I don't have my debtor's address, what should I do?",
+      answer: "We are able to conduct thorough investigations to find your debtors even if you no longer have their contact details."
+    },
+    {
+      question: "Can I send you a list of debtors by email?",
+      answer: "Once the processing period is exhausted or if we estimate that the file is irrecoverable, we will provide you with all the information we have been able to obtain during our processing process, and this without any consideration."
+    },
+    {
+      question: "How do you calculate your fees?",
+      answer: "We only charge our fees on the amounts recovered after our intervention, at the rate indicated in our collection conditions. We assure you that you have no costs to incur in case of collection failure."
+    },
+    {
+      question: "How do you keep me informed of your actions?",
+      answer: "You will be informed of the progress of each file by email and you will receive reports on all files entrusted at the end of each month."
+    }
+  ];
+
   return (
-    <Container
-      id="faq"
-      sx={{
-        
-        pt: { xs: 4, sm: 12 },
-        pb: { xs: 8, sm: 16 },
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: { xs: 3, sm: 6 },
-        
-        
-      }}
-    >
-      <Typography
-        component="h2"
-        variant="h4"
-        
-        sx={{
-          width: { sm: '100%', md: '60%' },
-          textAlign: { sm: 'left', md: 'center' },
-          position: 'relative',
-          
-          
-        }}
-        className='typo'
-      >
-        FAQs
-      </Typography>
+    <div className="container" id="faq" style={{ paddingTop: '5rem', paddingBottom: '5rem' }}>
+      <div className="row justify-content-center">
+        <div className="col-lg-8 text-center">
+          <h2 className="mb-4 fade-in-up" style={{ 
+            fontSize: 'clamp(2rem, 4vw, 3rem)', 
+            fontWeight: '800', 
+            color: 'var(--text-primary)',
+            background: 'linear-gradient(135deg, var(--text-primary), var(--primary-color))',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text'
+          }}>
+            Frequently Asked Questions
+          </h2>
+          <p className="mb-5 fade-in-up" style={{ 
+            fontSize: '1.1rem', 
+            color: 'var(--text-secondary)',
+            maxWidth: '600px',
+            margin: '0 auto'
+          }}>
+            Find answers to common questions and get the information you need quickly.
+          </p>
+        </div>
+      </div>
 
-      <p>find answers to common questions and get the information you need quickly.</p>
-
-
-      <Box sx={{ width: '80%' }} >
-        <Accordion
-          expanded={expanded === 'panel1'}
-          onChange={handleChange('panel1')}
-          
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1d-content"
-            id="panel1d-header"
-            
-          >
-            <Typography component="h3" variant="subtitle2" >
-              how does it work ?
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: '100%', md: '70%' } }}
-            >
-              Website localization involves adapting a website's content, design, and functionality to make it culturally and linguistically appropriate for a specific target audience in different regions or countries. This typically includes translating text, adjusting images, formats, and ensuring compliance with local regulations and preferences.
-
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion
-          expanded={expanded === 'panel2'}
-          onChange={handleChange('panel2')}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2d-content"
-            id="panel2d-header"
-          >
-            <Typography component="h3" variant="subtitle2">
-            De quelles pièces justificatives avez-vous besoin ?
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: '100%', md: '70%' } }}
-            >
-              Pour commencer nos poursuites, une simple liste 
-                        de vos débiteurs nous suffit. Par la suite, si nous le 
-                        jugeons nécessaire ou sur réclamation de votre 
-                        débiteur, nous vous demanderons les photocopies 
-                        des pièces justificatives (contrat, facture, bon de 
-                        commande, bon de livraison…).
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion
-          expanded={expanded === 'panel3'}
-          onChange={handleChange('panel3')}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel3d-content"
-            id="panel3d-header"
-          >
-            <Typography component="h3" variant="subtitle2">
-            Je n’ai pas l’adresse de mon débiteur, que faire ?
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: '100%', md: '70%' } }}
-            >
-              Nous sommes en mesure de faire des 
-                        investigations approfondies pour retrouver vos 
-                        débiteurs même si vous n’avez plus leurs 
-                        coordonnées.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion
-          expanded={expanded === 'panel4'}
-          onChange={handleChange('panel4')}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel4d-content"
-            id="panel4d-header"
-          >
-            <Typography component="h3" variant="subtitle2">
-            Peut-on vous transmettre une liste de débiteurs par email ?
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: '100%', md: '70%' } }}
-            >
-               Une fois le délai de traitement épuisé ou si l’on 
-                                estime que le dossier est irrécouvrable nous vous 
-                                remettons toutes les informations que l’on aura pu 
-                                obtenir lors de notre processus de traitement, et 
-                                cela sans aucune contrepartie.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-
-
-        <Accordion
-          expanded={expanded === 'panel5'}
-          onChange={handleChange('panel5')}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel5d-content"
-            id="panel5d-header"
-          >
-            <Typography component="h3" variant="subtitle2">
-            Comment calculez-vous vos honoraires ?
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: '100%', md: '70%' } }}
-            >
-               Nous facturons nos honoraires uniquement sur les 
-                        sommes récupérées après notre intervention, au 
-                        taux indiqué dans nos conditions de recouvrement. 
-                        Nous vous assurons que vous n’avez aucun frais à 
-                        engager en cas d’échec du recouvrement.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-
-        <Accordion
-          expanded={expanded === 'panel6'}
-          onChange={handleChange('panel6')}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel6d-content"
-            id="panel6d-header"
-          >
-            <Typography component="h3" variant="subtitle2">
-            Comment me tenez-vous informé de vos actions ?
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: '100%', md: '70%' } }}
-            >
-               Vous serez informés des avancés de chaque 
-                        dossier par e-mail et vous recevrez des reportings 
-                        sur l’ensemble des dossiers confiés à la fin de 
-                        chaque mois
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-
-      </Box>
-    </Container>
+      <div className="row justify-content-center">
+        <div className="col-lg-8">
+          {faqs.map((faq, index) => (
+            <div key={index} className="card mb-3 fade-in-up" style={{
+              animationDelay: `${index * 0.1}s`
+            }}>
+              <div 
+                className="card-header" 
+                style={{ 
+                  cursor: 'pointer', 
+                  backgroundColor: openAccordion === index ? 'var(--primary-color)' : 'var(--bg-white)',
+                  color: openAccordion === index ? 'white' : 'var(--text-primary)',
+                  border: 'none',
+                  padding: '1.5rem',
+                  borderRadius: 'var(--border-radius-lg)',
+                  boxShadow: 'var(--shadow-sm)',
+                  transition: 'var(--transition)'
+                }}
+                onClick={() => toggleAccordion(index)}
+              >
+                <div className="d-flex justify-content-between align-items-center">
+                  <h5 className="mb-0" style={{ 
+                    fontWeight: '600',
+                    fontSize: '1.1rem'
+                  }}>
+                    {faq.question}
+                  </h5>
+                  <span style={{ 
+                    fontSize: '1.5rem',
+                    fontWeight: 'bold',
+                    transition: 'var(--transition)',
+                    transform: openAccordion === index ? 'rotate(180deg)' : 'rotate(0deg)'
+                  }}>
+                    {openAccordion === index ? '−' : '+'}
+                  </span>
+                </div>
+              </div>
+              {openAccordion === index && (
+                <div className="card-body" style={{ 
+                  padding: '1.5rem',
+                  backgroundColor: 'var(--bg-light)',
+                  borderTop: '1px solid rgba(0,0,0,0.05)'
+                }}>
+                  <p className="mb-0" style={{ 
+                    color: 'var(--text-secondary)', 
+                    lineHeight: '1.7',
+                    fontSize: '1rem'
+                  }}>
+                    {faq.answer}
+                  </p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }

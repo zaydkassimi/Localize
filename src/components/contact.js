@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
-import '../style.css';
+import '../index.css';
 import { Helmet } from 'react-helmet';
 import Navbar from './navbar';
 import Footer from './footer'
