@@ -3,6 +3,13 @@ import { Link } from 'react-router-dom'
 
 function Navbar() {
   const [open, setOpen] = useState(false)
+  const [search, setSearch] = useState('')
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault()
+    // For now just log; can wire to navigate/search later
+    console.log('Searching for:', search)
+  }
 
   return (
     <nav className="navbar" aria-label="Main navigation">
@@ -13,14 +20,25 @@ function Navbar() {
 
         <div className="nav-center">
           <div className="nav-links">
-            <a href="#hotels" className="nav-link">Hotels</a>
-            <a href="#coffees" className="nav-link">Coffees</a>
-            <a href="#stadiums" className="nav-link">Stadiums</a>
-            <a href="#bars" className="nav-link">Bars</a>
+            <Link to="/hotels" className="nav-link">Hotels</Link>
+            <Link to="/coffees" className="nav-link">Coffees</Link>
+            <Link to="/stadiums" className="nav-link">Stadiums</Link>
+            <Link to="/bars" className="nav-link">Bars</Link>
           </div>
         </div>
 
         <div className="nav-right">
+          <form className="nav-search" onSubmit={handleSearchSubmit} role="search">
+            <input
+              className="search-input"
+              placeholder="Search places, cities..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              aria-label="Search places"
+            />
+            <button type="submit" className="search-btn">Search</button>
+          </form>
+
           <Link to="/auth" className="login-btn">Login</Link>
           <button
             className="mobile-menu"
@@ -39,10 +57,10 @@ function Navbar() {
         {open && (
           <div className="mobile-overlay">
             <div className="mobile-menu-content">
-              <a href="#hotels" onClick={() => setOpen(false)}>Hotels</a>
-              <a href="#coffees" onClick={() => setOpen(false)}>Coffees</a>
-              <a href="#stadiums" onClick={() => setOpen(false)}>Stadiums</a>
-              <a href="#bars" onClick={() => setOpen(false)}>Bars</a>
+              <Link to="/hotels" onClick={() => setOpen(false)}>Hotels</Link>
+              <Link to="/coffees" onClick={() => setOpen(false)}>Coffees</Link>
+              <Link to="/stadiums" onClick={() => setOpen(false)}>Stadiums</Link>
+              <Link to="/bars" onClick={() => setOpen(false)}>Bars</Link>
               <Link to="/auth" className="mobile-login" onClick={() => setOpen(false)}>Login</Link>
             </div>
           </div>

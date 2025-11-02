@@ -1,5 +1,17 @@
+import { Link } from 'react-router-dom'
 import PlaceCard from '../components/PlaceCard.jsx'
+import ImageGallery from '../components/ImageGallery.jsx'
 import { hotels, coffees } from '../data/recommendations.js'
+
+const stadiumPreviewImages = [
+  { src: 'https://images.unsplash.com/photo-1542736667-069246bdbc6d?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=1', alt: 'Mohammed V Stadium', caption: 'Mohammed V Stadium — Casablanca' },
+  { src: 'https://images.unsplash.com/photo-1563720224779-2f5b6ef8b3b3?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=2', alt: 'Stade Adrar', caption: 'Stade Adrar — Agadir' },
+]
+
+const barsPreviewImages = [
+  { src: 'https://images.unsplash.com/photo-1504274066651-8d31a536b11a?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=4', alt: 'Sky Lounge Casablanca', caption: 'Sky Lounge — Casablanca' },
+  { src: 'https://images.unsplash.com/photo-1533777324565-a040eb52fac2?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=5', alt: 'Le Privé Marrakech', caption: 'Le Privé — Marrakech' },
+]
 
 function Home() {
   return (
@@ -25,6 +37,10 @@ function Home() {
               <button className="btn-primary">Start Exploring</button>
               <button className="btn-secondary">View Map</button>
             </div>
+          <div className="hero-search">
+            <input className="search-input" placeholder="Search hotels, coffees, stadiums..." aria-label="Home search" />
+            <button className="search-btn">Explore</button>
+          </div>
           </div>
           <div className="hero-visual">
             <div className="hero-card hotel-preview">
@@ -56,10 +72,16 @@ function Home() {
         <section id="hotels" className="section">
           <div className="container">
             <div className="section-header">
-              <div className="section-badge">🏨 Accommodation</div>
-              <h2 className="section-title">Handpicked Hotels</h2>
-              <p className="section-subtitle">From traditional riads to modern luxury - find your perfect stay</p>
+              <div>
+                <div className="section-badge">🏨 Accommodation</div>
+                <h2 className="section-title">Handpicked Hotels</h2>
+                <p className="section-subtitle">From traditional riads to modern luxury - find your perfect stay</p>
+              </div>
+              <div className="section-actions">
+                <Link to="/hotels" className="btn-outline">View all</Link>
+              </div>
             </div>
+
             <div className="cards-grid">
               {hotels.map((h) => (
                 <PlaceCard key={h.id} place={h} />
@@ -71,15 +93,55 @@ function Home() {
         <section id="coffees" className="section section-alt">
           <div className="container">
             <div className="section-header">
-              <div className="section-badge">☕ Coffee Culture</div>
-              <h2 className="section-title">Best Coffee Spots</h2>
-              <p className="section-subtitle">Discover where locals get their caffeine fix and unwind</p>
+              <div>
+                <div className="section-badge">☕ Coffee Culture</div>
+                <h2 className="section-title">Best Coffee Spots</h2>
+                <p className="section-subtitle">Discover where locals get their caffeine fix and unwind</p>
+              </div>
+              <div className="section-actions">
+                <Link to="/coffees" className="btn-outline">View all</Link>
+              </div>
             </div>
+
             <div className="cards-grid">
               {coffees.map((c) => (
                 <PlaceCard key={c.id} place={c} />
               ))}
             </div>
+          </div>
+        </section>
+
+        <section id="stadiums" className="section section-alt">
+          <div className="container">
+            <div className="section-header">
+              <div>
+                <div className="section-badge">🏟️ Sports</div>
+                <h2 className="section-title">Stadiums & Venues</h2>
+                <p className="section-subtitle">Major stadiums and sports venues across Morocco.</p>
+              </div>
+              <div className="section-actions">
+                <Link to="/stadiums" className="btn-outline">View all</Link>
+              </div>
+            </div>
+
+            <ImageGallery images={stadiumPreviewImages} />
+          </div>
+        </section>
+
+        <section id="bars" className="section">
+          <div className="container">
+            <div className="section-header">
+              <div>
+                <div className="section-badge">🍸 Nightlife</div>
+                <h2 className="section-title">Bars & Nightlife</h2>
+                <p className="section-subtitle">Popular bars, lounges, and nightlife spots.</p>
+              </div>
+              <div className="section-actions">
+                <Link to="/bars" className="btn-outline">View all</Link>
+              </div>
+            </div>
+
+            <ImageGallery images={barsPreviewImages} />
           </div>
         </section>
 

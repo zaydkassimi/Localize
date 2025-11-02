@@ -49,7 +49,7 @@ function Auth() {
                 top: `${Math.random() * 100}%`
               }}
             >
-              <img src="/logo.png" alt="" />
+              <img src="/navicon.png" alt="" />
             </div>
           ))}
         </div>

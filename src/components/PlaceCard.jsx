@@ -1,4 +1,5 @@
 import StarRating from './StarRating.jsx'
+import SmartImage from './SmartImage.jsx'
 
 function emojiFor(category) {
   switch ((category || '').toLowerCase()) {
@@ -20,14 +21,25 @@ function emojiFor(category) {
 }
 
 function PlaceCard({ place }) {
-  const { name, city, rating, category } = place
+  const { name, city, rating, category, image } = place
   return (
-    <article className="card" aria-label={`${name} in ${city}`}>
-      <div className="thumb" aria-hidden="true">{emojiFor(category)}</div>
+    <article className="card place-card" aria-label={`${name} in ${city}`}>
+      {image ? (
+        <div className="thumb image-thumb">
+          <SmartImage src={image} publicName={null} alt={name} className="thumb-img" fallbackEmoji={emojiFor(category)} />
+        </div>
+      ) : (
+        <div className="thumb image-thumb">
+          <SmartImage src={null} publicName={name} alt={name} className="thumb-img" fallbackEmoji={emojiFor(category)} />
+        </div>
+      )}
+
       <div className="card-body">
         <h3 className="place-name">{name}</h3>
         <div className="place-meta">{city}</div>
-        <StarRating value={rating} />
+        <div className="meta-row">
+          <StarRating value={rating} />
+        </div>
       </div>
     </article>
   )
